@@ -10,12 +10,20 @@ function Signup() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const arePasswordsMatching = () => {
+        return password === confirmPassword
+    }
     const signup = async () => {
-        if (fname ==="" || lname ==="" ||  email === "" || password === "")
+        if (fname ==="" || lname ==="" ||  email === "" || password === "" || confirmPassword === "")
             return alert ("Please fill all fields")
+        if (password !== confirmPassword){
+            return alert ("passwords do not matched")
+        }
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, password);
-            alert("Signup Successful");
+            if (arePasswordsMatching()){
+                const user = await createUserWithEmailAndPassword(auth, email, password);
+                alert("Signup Successful");
+            }
         } catch (error) {
             console.log(error);
         }
@@ -61,7 +69,7 @@ function Signup() {
                     />
                     <br/>
                     <input
-                        type="cpassword"
+                        type="text"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword (e.target.value)}
                         className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
