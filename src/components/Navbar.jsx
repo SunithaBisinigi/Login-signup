@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import Home  from '../pages/Home';
 
 function Navbar() {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -20,7 +21,7 @@ function Navbar() {
                     <Link to={'/'}>
                         <li className='cursor-pointer'>Home</li>
                     </Link>
-                    <Link to={'/login'}>
+                    <Link to={'/login'} >
                         <li className='cursor-pointer'>Login</li>
                     </Link>
                     <Link to={'/signup'}>

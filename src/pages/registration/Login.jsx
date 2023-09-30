@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase/FirebaseConfig'
+import { auth } from '../../firebase/FirebaseConfig';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -18,6 +18,7 @@ function Login() {
             alert ('Login Successful');
             setEmail("");
             setPassword("");
+            navigate('/LoginNavbar')
         } catch (error) {
             console.log(error);
             alert('Wrong login Details')
@@ -49,8 +50,7 @@ function Login() {
                     />
                 </div>
                 <div className=' flex justify-center mb-3'>
-                    <button
-                        onClick={login}
+                    <button onClick={login}
                         className=' bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg'>
                         Login
                     </button>
