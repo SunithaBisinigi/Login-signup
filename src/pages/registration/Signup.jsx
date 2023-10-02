@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, sendSignInLinkToEmail, updateCurrentUser } from 'firebase/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase/FirebaseConfig';
@@ -21,12 +21,14 @@ function Signup() {
         }
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password);
-            alert("Signup Successful, Click on Login");
+            await sendEmailVerification(auth.currentUser);       
+            alert("We have sent you varification mail");
             setFname("");
             setLname("");
             setEmail("");
             setPassword("");
             setConfirmPassword("");
+            return user;
         } catch (error) {
         console.log(error);
     }
